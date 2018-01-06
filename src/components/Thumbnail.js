@@ -1,14 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { space, width, color } from "styled-system";
+import Img from "gatsby-image";
 
-const ThumbnailImage = styled.img`
-  margin: 0;
+const ThumbnailImage = styled(Img)`
+  ${space} ${width};
 `;
 
-const Thumbnail = ({ name = "Name", className }) => (
+const Caption = styled.div`
+  ${color} text-transform: uppercase;
+  text-align: center;
+  ${space};
+`;
+
+const Thumbnail = ({ name = "Name", className, resolutions }) => (
   <div className={className}>
-    <ThumbnailImage src="https://picsum.photos/300/300/?random" />
-    <div>{name}</div>
+    <ThumbnailImage width={1} m={0} resolutions={resolutions} />
+    <Caption color="darkgray" mt={12}>
+      {name}
+    </Caption>
   </div>
 );
 

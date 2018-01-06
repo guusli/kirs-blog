@@ -1,15 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Link from "gatsby-link";
+import Link from "../components/Link";
 import Helmet from "react-helmet";
 import styled from "styled-components";
+import { space, width, fontSize, color } from "styled-system";
 import raleway from "typeface-raleway";
+import { ThemeProvider } from "styled-components";
+
+const theme = {
+  breakpoints: [32, 48, 64],
+  space: [0, 8, 16, 24, 32],
+  fontSizes: [12, 16, 18, 24, 36, 72],
+  colors: {
+    black: "#111",
+    darkgray: "#6d6d6d"
+  }
+};
 
 const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 0;
+  text-transform: uppercase;
+  ${space};
+`;
+
+const NavigationHeading = styled.h1`
+  ${fontSize};
 `;
 
 const NavigationMenu = styled.ul`
@@ -17,44 +34,73 @@ const NavigationMenu = styled.ul`
 `;
 
 const NavItem = styled.li`
-  display: inline-block;
-  padding: 0 10px;
+  ${color} display: inline-block;
+  ${space};
 `;
 
 const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: 1200px;
+  ${space} ${width} max-width: 900px;
+`;
+
+const Heading = styled.h1`
+  font-weight: 100;
+  font-size: 2.2rem;
 `;
 
 const Header = () => (
-  <Navigation>
-    <h1>M Kirs</h1>
+  <Navigation px={20} py={4}>
+    <Heading>
+      <Link to="/">M Kirs</Link>
+    </Heading>
     <NavigationMenu>
-      <NavItem>Work</NavItem>
-      <NavItem>About</NavItem>
-      <NavItem>Shop</NavItem>
+      <NavItem px={1} color="darkgray">
+        <Link
+          to="/work"
+          activeStyle={{
+            textDecoration: "underline"
+          }}
+        >
+          Work
+        </Link>
+      </NavItem>
+      <NavItem px={1} color="darkgray">
+        <Link
+          activeStyle={{
+            textDecoration: "underline"
+          }}
+          to="/about"
+        >
+          About
+        </Link>
+      </NavItem>
+      <NavItem px={1} color="darkgray">
+        <Link
+          activeStyle={{
+            textDecoration: "underline"
+          }}
+          to="/shop"
+        >
+          Shop
+        </Link>
+      </NavItem>
     </NavigationMenu>
   </Navigation>
 );
 
-const TemplateWrapper = ({ children }) => (
-  <Wrapper>
-    <Helmet
-      title="Gatsby Default Starter"
-      meta={[
-        { name: "description", content: "Sample" },
-        { name: "keywords", content: "sample, something" }
-      ]}
-    />
-    <Header />
-    <div
-      style={{
-        textAlign: "center"
-      }}
-    >
-      {children()}
-    </div>
-  </Wrapper>
+const TemplateWrapper = ({ children, data }) => (
+  <ThemeProvider theme={theme}>
+    <Wrapper width={1} my={3} mx="auto">
+      <Helmet
+        title={data.site.siteMetadata.title}
+        meta={[
+          { name: "description", content: "Sample" },
+          { name: "keywords", content: "sample, something" }
+        ]}
+      />
+      <Header />
+      <div>{children()}</div>
+    </Wrapper>
+  </ThemeProvider>
 );
 
 TemplateWrapper.propTypes = {
@@ -62,3 +108,13 @@ TemplateWrapper.propTypes = {
 };
 
 export default TemplateWrapper;
+
+export const query = graphql`
+  query AboutQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

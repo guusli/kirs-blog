@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`
+    title: `Mathilda Kirs`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -10,6 +10,16 @@ module.exports = {
       options: {
         pathToConfigModule: `src/utils/typography.js`
       }
-    }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`
+      }
+    },
+    `gatsby-transformer-remark`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`
   ]
 };

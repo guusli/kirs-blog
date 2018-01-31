@@ -17,6 +17,15 @@ const theme = {
   }
 };
 
+const BigLogo = styled.div`
+  font-size: 64px;
+  font-weight: 100;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`
+
 const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -90,15 +99,7 @@ const Header = () => (
 const TemplateWrapper = ({ children, data }) => (
   <ThemeProvider theme={theme}>
     <Wrapper width={1} my={3} mx="auto">
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[
-          { name: "description", content: "Sample" },
-          { name: "keywords", content: "sample, something" }
-        ]}
-      />
-      <Header />
-      <div>{children()}</div>
+      <BigLogo>M KIRS</BigLogo>
     </Wrapper>
   </ThemeProvider>
 );

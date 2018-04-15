@@ -7,6 +7,9 @@ import { space, width, fontSize, color } from "styled-system";
 import raleway from "typeface-raleway";
 import { ThemeProvider } from "styled-components";
 
+import "./index.css";
+import "typeface-raleway";
+
 const theme = {
   breakpoints: [32, 48, 64],
   space: [0, 8, 16, 24, 32],

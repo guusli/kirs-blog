@@ -84,7 +84,7 @@ export const query = graphql`
         thumbnail {
           childImageSharp {
             resolutions(width: 500, height: 500) {
-              ...GatsbyImageSharpResolutions
+              ...GatsbyImageSharpResolutions_noBase64
             }
           }
         }
@@ -93,7 +93,7 @@ export const query = graphql`
     file(relativePath: { regex: "/$slug/" }) {
       childImageSharp {
         resolutions(width: 500, height: 500) {
-          ...GatsbyImageSharpResolutions
+          ...GatsbyImageSharpResolutions_noBase64
         }
       }
     }

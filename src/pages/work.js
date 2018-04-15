@@ -41,7 +41,7 @@ export const query = graphql`
             thumbnail {
               childImageSharp {
                 resolutions(width: 250, height: 250) {
-                  ...GatsbyImageSharpResolutions
+                  ...GatsbyImageSharpResolutions_noBase64
                 }
               }
             }

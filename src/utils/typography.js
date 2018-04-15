@@ -5,8 +5,9 @@ const typography = new Typography({
   baseLineHeight: 1.45,
   headerFontFamily: ["Raleway", "sans-serif"],
   bodyFontFamily: ["Raleway", "sans-serif"],
-  bodyWeight: 200,
-  headerWeight: 200
+  bodyWeight: 100,
+  headerWeight: 100,
+  omitGoogleFont: true
 });
 
 export default typography;

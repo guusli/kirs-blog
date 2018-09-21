@@ -38,10 +38,16 @@ const Navigation = styled.nav`
   align-items: center;
   text-transform: uppercase;
   ${space};
+  flex-direction: column;
+
+  @media (min-width: 32rem) {
+    flex-direction: row;
+  }
 `;
 
 const NavigationMenu = styled.ul`
   list-style: none;
+  padding: 0;
 `;
 
 const NavItem = styled.li`
@@ -64,7 +70,10 @@ const Wrapper = styled.div`
 const Heading = styled.h1`
   font-weight: 100;
   font-size: 2.2rem;
-  padding-left: 6px;
+
+  @media (min-width: 32rem) {
+    padding-left: 6px;
+  }
 `;
 
 const Header = () => (
@@ -75,6 +84,7 @@ const Header = () => (
     <NavigationMenu>
       <NavItem px={1} color="darkgray">
         <Link
+          exact
           to="/"
           activeStyle={{
             textDecoration: "underline"
@@ -83,18 +93,19 @@ const Header = () => (
           Work
         </Link>
       </NavItem>
-      {false && (
-        <NavItem px={1} color="darkgray">
-          <Link
-            activeStyle={{
-              textDecoration: "underline"
-            }}
-            to="/about"
-          >
-            About
-          </Link>
-        </NavItem>
-      )}
+      <NavItem px={1} color="darkgray">
+        <Link
+          activeStyle={{
+            textDecoration: "underline"
+          }}
+          to="/about"
+        >
+          About
+        </Link>
+      </NavItem>
+      <NavItem px={1} color="darkgray">
+        <Link href="https://www.instagram.com/mathildakirsart/">Instagram</Link>
+      </NavItem>
       {false && (
         <NavItem px={1} color="darkgray">
           <Link
@@ -132,7 +143,7 @@ class App extends Component {
                   <Painting {...props} works={works} images={images} />
                 )}
               />
-              {false && <Route path="/about" component={props => <About />} />}
+              <Route exact path="/about" component={props => <About />} />
             </div>
           </Router>
         </Wrapper>

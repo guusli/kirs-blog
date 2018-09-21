@@ -42,6 +42,12 @@ export default [
     price: "$444"
   },
   {
+    name: "woman and child",
+    technique: "Acrylic on canvas",
+    measurements: "500 x 500",
+    price: "$444"
+  },
+  {
     name: "the fish",
     technique: "Acrylic on canvas",
     measurements: "500 x 500",

@@ -76,6 +76,14 @@ const Heading = styled.h1`
   }
 `;
 
+const gaTracking = ({ location }) => {
+  if (typeof window.ga === "function") {
+    window.ga("set", "page", location.pathname + location.search);
+    window.ga("send", "pageview");
+  }
+  return null;
+};
+
 const Header = () => (
   <Navigation px={20} py={4}>
     <Heading>
@@ -137,13 +145,16 @@ class App extends Component {
                   <Work {...props} works={works} images={images} />
                 )}
               />
+              <Route exact path="/" render={gaTracking} />
               <Route
                 path="/work/:slug"
                 component={props => (
                   <Painting {...props} works={works} images={images} />
                 )}
               />
+              <Route path="/work/:slug" render={gaTracking} />
               <Route exact path="/about" component={props => <About />} />
+              <Route exact path="/about" render={gaTracking} />
             </div>
           </Router>
         </Wrapper>
